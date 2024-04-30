@@ -7,7 +7,7 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_DB: testcommerece
+      POSTGRES_DB: testcommerce
       POSTGRES_USER: test_wsd
       POSTGRES_PASSWORD: test_wsd
     ports:
