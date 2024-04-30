@@ -12,7 +12,7 @@
     <artifactId>testcommerce</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>testcommerce</name>
-    <description>testcommerce</description>
+    <description>A e-commerce application for test purpose</description>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -32,6 +32,10 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
@@ -44,6 +48,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
