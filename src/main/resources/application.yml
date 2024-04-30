@@ -1,0 +1,11 @@
+spring:
+  profiles.active: dev
+  application.name: @project.artifactId@
+
+server:
+  servlet:
+    context-path: /@project.artifactId@
+  port: 8089
+logging:
+  file:
+    path: /opt/tomcat/logs
