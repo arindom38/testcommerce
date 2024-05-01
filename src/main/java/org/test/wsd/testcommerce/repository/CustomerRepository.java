@@ -6,4 +6,9 @@ import org.test.wsd.testcommerce.entity.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    Customer findByEmail(String email);
+
+    Customer findById(long id);
+
+    Customer findByPhone(String phone);
 }
