@@ -6,6 +6,8 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.math.BigInteger;
+
 @Data
 @Entity
 @Table(name = "item")
@@ -14,5 +16,5 @@ import lombok.EqualsAndHashCode;
 public class Item extends BaseEntity{
     private String name;
     private String description;
-    private double price;
+    private BigInteger price;
 }
