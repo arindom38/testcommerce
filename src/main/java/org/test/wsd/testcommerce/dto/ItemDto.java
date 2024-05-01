@@ -1,5 +1,6 @@
 package org.test.wsd.testcommerce.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +16,10 @@ public class ItemDto {
     private String itemName;
     private String itemDescription;
     private String itemPrice;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private int totalSaleAmount;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private int totalNumberOfSale;
 
     public ItemDto(Item item) {
         this.itemId = item.getId();
