@@ -9,3 +9,12 @@ server:
 logging:
   file:
     path: /opt/tomcat/logs
+
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
