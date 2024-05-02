@@ -57,6 +57,7 @@ Here is what this little application demonstrates:
 * Uses JUnit with Mockito demonstrates TDD approach with associated libraries
 * All APIs are "self-documented" by Swagger2 using annotations
 * Flyway is used for db migration automatic with an initial dump data for testing.
+* Demonstrates aspect Oriented logging for request and response
 
 Here are some Key API you can call:
 
@@ -115,13 +116,6 @@ Body: 300
 ```
 curl --location 'http://localhost:8089/testcommerce/api/sales/max-sale-date?startDate=2024-04-01&endDate=2024-04-06' \
 --header 'Content-Type: application/json'
-
-{
-"name" : "Beds R Us",
-"description" : "Very basic, small rooms but clean",
-"city" : "Santa Ana",
-"rating" : 3
-}
 
 RESPONSE: HTTP 200 
 Body: "2024-04-02"
