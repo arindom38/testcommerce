@@ -18,6 +18,7 @@ import org.test.wsd.testcommerce.repository.SaleRepository;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -67,8 +68,8 @@ class SaleServiceImplTest {
     @Test
     void given_limit_when_get_top_selling_items_of_all_time_then_return_top_selling_items_based_on_sale_amount() {
         List<ItemSaleAmountDto> itemSaleAmountDtos = List.of(
-                new ItemSaleAmountDto(1L, 500),
-                new ItemSaleAmountDto(2L, 400)
+                new ItemSaleAmountDto(1L, 500L),
+                new ItemSaleAmountDto(2L, 400L)
         );
 
         Item item1 = new Item();
@@ -96,15 +97,15 @@ class SaleServiceImplTest {
         assertEquals("product B", topSellingItemsAllTime.get(1).getItemDescription());
         assertEquals(BigInteger.ONE.toString(), topSellingItemsAllTime.get(0).getItemPrice());
         assertEquals(BigInteger.TWO.toString(), topSellingItemsAllTime.get(1).getItemPrice());
-        assertEquals(500, topSellingItemsAllTime.get(0).getTotalSaleAmount());
-        assertEquals(400, topSellingItemsAllTime.get(1).getTotalSaleAmount());
+        assertEquals("500", topSellingItemsAllTime.get(0).getTotalSaleAmount());
+        assertEquals("400", topSellingItemsAllTime.get(1).getTotalSaleAmount());
     }
 
     @Test
     void given_limit_date_range_when_get_top_selling_items_by_date_range_then_return_top_selling_items_based_on_sale_count() {
         List<ItemSaleCountDto> itemSaleCountDtos = List.of(
-                new ItemSaleCountDto(1L, 500),
-                new ItemSaleCountDto(2L, 400)
+                new ItemSaleCountDto(1L, 500L),
+                new ItemSaleCountDto(2L, 400L)
         );
 
         Item item1 = new Item();
@@ -132,8 +133,26 @@ class SaleServiceImplTest {
         assertEquals("product B", topSellingItemsByDateRange.get(1).getItemDescription());
         assertEquals(BigInteger.ONE.toString(), topSellingItemsByDateRange.get(0).getItemPrice());
         assertEquals(BigInteger.TWO.toString(), topSellingItemsByDateRange.get(1).getItemPrice());
-        assertEquals(500, topSellingItemsByDateRange.get(0).getTotalNumberOfSale());
-        assertEquals(400, topSellingItemsByDateRange.get(1).getTotalNumberOfSale());
+        assertEquals("500", topSellingItemsByDateRange.get(0).getTotalNumberOfSale());
+        assertEquals("400", topSellingItemsByDateRange.get(1).getTotalNumberOfSale());
+    }
+
+    @Test
+    void testDate() {
+        LocalDate currentDate = LocalDate.of(2024, 3, 15);
+
+        // Get the first day of the current month
+        LocalDate firstDayOfCurrentMonth = currentDate.withDayOfMonth(1);
+
+        // Get the first day of the last month
+        LocalDate firstDayOfLastMonth = firstDayOfCurrentMonth.minusMonths(1);
+
+        // Get the last day of the last month
+        LocalDate lastDayOfLastMonth = firstDayOfLastMonth.with(TemporalAdjusters.lastDayOfMonth());
+
+        System.out.println("Start date of last month: " + firstDayOfLastMonth);
+        System.out.println("End date of last month: " + lastDayOfLastMonth);
+
     }
 
 }

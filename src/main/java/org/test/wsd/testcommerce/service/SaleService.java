@@ -14,4 +14,6 @@ public interface SaleService {
 
     List<ItemDto> getTopSellingItemsByDateRange(int limit, LocalDate startDate, LocalDate endDate);
 
+    List<ItemDto> getTopSellingItemsOfLastMonth(int limit);
+
 }

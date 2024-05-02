@@ -21,7 +21,7 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
     LocalDate getMaxSaleDay(LocalDate startDate, LocalDate endDate);
 
     @Query("SELECT new org.test.wsd.testcommerce.dto.ItemSaleAmountDto(s.itemId,COALESCE(SUM(s.amount),0)) FROM Sale s " +
-            "GROUP BY s.itemId ORDER BY COALESCE(SUM(s.amount),0) DESC,s.saleDate DESC LIMIT :limit")
+            "GROUP BY s.itemId ORDER BY COALESCE(SUM(s.amount),0) DESC LIMIT :limit")
     List<ItemSaleAmountDto> getTopSellingItemsAllTime(int limit);
 
     @Query("SELECT new org.test.wsd.testcommerce.dto.ItemSaleCountDto(s.itemId ,COALESCE(count(s.id),0))FROM Sale s " +

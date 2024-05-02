@@ -17,9 +17,9 @@ public class ItemDto {
     private String itemDescription;
     private String itemPrice;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int totalSaleAmount;
+    private String totalSaleAmount;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private int totalNumberOfSale;
+    private String totalNumberOfSale;
 
     public ItemDto(Item item) {
         this.itemId = item.getId();

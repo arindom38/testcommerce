@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.test.wsd.testcommerce.constant.ErrorCode;
 import org.test.wsd.testcommerce.dto.ItemDto;
 import org.test.wsd.testcommerce.entity.Customer;
 import org.test.wsd.testcommerce.entity.CustomerWishlist;
+import org.test.wsd.testcommerce.exception.GenericNotFoundException;
 import org.test.wsd.testcommerce.repository.CustomerRepository;
 
 import java.util.List;
@@ -21,7 +23,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getCustomerById(Long customerId) {
-        return customerRepository.findById(customerId).orElse(null);
+        return customerRepository.findById(customerId)
+                .orElseThrow(() ->
+                        new GenericNotFoundException(ErrorCode.ENTITY_NOT_FOUND_WITH_ID, customerId.toString()));
     }
 
     @Override

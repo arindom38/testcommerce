@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ItemSaleAmountDto {
     private Long id;
-    private int totalSaleAmount;
+    private Long totalSaleAmount;
 }

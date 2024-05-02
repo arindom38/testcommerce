@@ -10,6 +10,7 @@ import org.test.wsd.testcommerce.entity.Item;
 import org.test.wsd.testcommerce.repository.SaleRepository;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 @Slf4j
@@ -18,6 +19,7 @@ import java.util.List;
 public class SaleServiceImpl implements SaleService {
     private final SaleRepository saleRepository;
     private final ItemService itemService;
+
 
     @Override
     public int getTotalSaleAmountByDate(LocalDate date) {
@@ -39,7 +41,7 @@ public class SaleServiceImpl implements SaleService {
                     .itemDescription(saledItem.getDescription())
                     .itemName(saledItem.getName())
                     .itemPrice(saledItem.getPrice().toString())
-                    .totalSaleAmount(itemSaleAmountDto.getTotalSaleAmount())
+                    .totalSaleAmount(itemSaleAmountDto.getTotalSaleAmount().toString())
                     .build();
         }).toList();
     }
@@ -54,8 +56,17 @@ public class SaleServiceImpl implements SaleService {
                     .itemDescription(saledItem.getDescription())
                     .itemName(saledItem.getName())
                     .itemPrice(saledItem.getPrice().toString())
-                    .totalNumberOfSale(itemSaleCountDto.getTotalNumberOfSale())
+                    .totalNumberOfSale(itemSaleCountDto.getTotalNumberOfSale().toString())
                     .build();
         }).toList();
+    }
+
+    @Override
+    public List<ItemDto> getTopSellingItemsOfLastMonth(int limit) {
+        // Get the first day of the last month
+        LocalDate firstDayOfLastMonth = LocalDate.now().withDayOfMonth(1).minusMonths(1);
+        // Get the last day of the last month
+        LocalDate lastDayOfLastMonth = firstDayOfLastMonth.with(TemporalAdjusters.lastDayOfMonth());
+        return getTopSellingItemsByDateRange(limit, firstDayOfLastMonth, lastDayOfLastMonth);
     }
 }
