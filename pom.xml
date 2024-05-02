@@ -11,6 +11,7 @@
     <groupId>org.test.wsd</groupId>
     <artifactId>testcommerce</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>testcommerce</name>
     <description>A e-commerce application for test purpose</description>
     <properties>
